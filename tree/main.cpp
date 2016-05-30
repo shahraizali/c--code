@@ -2,10 +2,44 @@
 
 
 using namespace std;
+void menu();
+void add_node();
+struct node
+{
+    int item;
+    node* left;
+    node* right;
+};
 
 int main(){
-    
+    menu();
     return 0;
+}
+
+void menu(){
+    int choice;
+    while (1)
+    {
+        cout << "Enter 1 to create "<<endl;
+        cout << "Enetr 2 to display "<< endl;
+        cout << "Enter 3 to add node "<< endl;
+        cout << "Enter your choice:";
+        cin >> choice;
+        
+        switch (choice)
+        {
+            case 1:
+                if()
+            break;
+            case 2:
+            break;
+            case 3:
+            break;
+        default:
+            break;
+        }
+    }
+    
 }
 
 void add_node(){
