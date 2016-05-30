@@ -2092,6 +2092,7 @@ void deletQQueue(){
 	}else{
 		head = NULL;
 		cout<<"\nstack Successfully Deleted.";
+        
 	}
 }
 int findQQueue(int x)
