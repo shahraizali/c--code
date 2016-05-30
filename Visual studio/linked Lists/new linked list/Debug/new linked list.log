@@ -1,0 +1,4 @@
+﻿new.obj : error LNK2019: unresolved external symbol "void __cdecl createll(void)" (?createll@@YAXXZ) referenced in function "void __cdecl mainmenu(void)" (?mainmenu@@YAXXZ)
+new.obj : error LNK2019: unresolved external symbol "void __cdecl deletell(void)" (?deletell@@YAXXZ) referenced in function "void __cdecl mainmenu(void)" (?mainmenu@@YAXXZ)
+new.obj : error LNK2019: unresolved external symbol "void __cdecl displayll(void)" (?displayll@@YAXXZ) referenced in function "void __cdecl mainmenu(void)" (?mainmenu@@YAXXZ)
+C:\Users\Shahraiz\OneDrive\c++\Visual studio\linked Lists\Debug\new linked list.exe : fatal error LNK1120: 3 unresolved externals

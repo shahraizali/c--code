@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1460669000 source:c:\users\shahraiz\onedrive\c++\stack\main.cpp
+	<iostream>
+	<process.h>
+	<conio.h>
+

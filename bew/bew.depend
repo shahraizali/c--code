@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1461773822 source:c:\users\shahraiz\onedrive\c++\bew\main.cpp
+	<fstream>
+	<stdio.h>
+	<process.h>
+	<string.h>
+	<iomanip>
+	<iostream>
+	<conio.h>
+	<windows.h>
+

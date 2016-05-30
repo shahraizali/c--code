@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1463334625 source:c:\users\shahraiz\onedrive\c++\linked list test\main.cpp
+	<process.h>
+	<iostream>
+	<windows.h>
+

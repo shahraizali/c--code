@@ -1,0 +1,2 @@
+﻿linked_lsit.obj : error LNK2019: unresolved external symbol "void __cdecl deletell(void)" (?deletell@@YAXXZ) referenced in function "void __cdecl menu(void)" (?menu@@YAXXZ)
+C:\Users\Shahraiz\OneDrive\c++\Visual studio\linked Lists\Debug\linked Lists.exe : fatal error LNK1120: 1 unresolved externals
