@@ -115,13 +115,13 @@ void queuemenu();
 int ts;
 float *stk = new float[ts];
 void SSmenu();
-void displayStack();
+void sdisplayStack();
 bool isEmpty();
 void isFull();
 void SScreateStack();
 void deleteStack();
 void clearStack();
-void queuepush(float);
+void sspush(int);
 int newpop();
 int isLenght();
 // stack linked list
@@ -133,6 +133,23 @@ int isLenght();
 
 void QQUEUEMenu();
 //queue
+
+
+
+// doubly menu
+
+ void doublymenu();
+
+
+//doubly stack
+
+     void doublystackmenu();
+     //doubly queue
+    void  doublyqueuemenu();
+
+// tree menu
+
+void treemenu();
     int main() {
         mainmenu();
 
@@ -142,15 +159,22 @@ void QQUEUEMenu();
 
     void mainmenu(){
         int choice;
+
                 while(1){
                         system("cls");
+
                     cout << "Enter 1 to go to simple list menu "<< endl;
                     cout << "Enter 2 to go to simple stack menu "<< endl;
                      cout << "Enter 3 to go to linked list menu "<< endl;
-                    cout << "Enter 4 to go to queue menu"<< endl;
+                    cout << "Enter 4 to go to simple queue menu"<< endl;
                     cout << "Enter 5 to go to stack application menu "<< endl;
                     cout << "Enter 6 to go to stack using linked list menu "<< endl;
                     cout << "Enter 7 to go to queue using linked list menu"<< endl;
+                    cout << "Enter 8 to go to doubly linked list menu "<< endl;
+                    cout << "Enter 9 to go to doubly stack menu "<< endl;
+                     cout << "Enter 10 to go to doubly queue menu "<< endl;
+                     cout << "Enter 11 to go to Tree menu "<< endl;
+
                     cout << "Enter -1 to exit "<< endl;
                     do {
 
@@ -200,6 +224,22 @@ void QQUEUEMenu();
                         system("cls");
                         QQUEUEMenu();
                         break;
+                    case 8:
+                        system("cls");
+                        doublymenu();
+                        break;
+                        case 9:
+                        system("cls");
+                        doublystackmenu();
+                        break;
+                         case 10:
+                        system("cls");
+                        doublyqueuemenu();
+                        break;
+                         case 11:
+                        system("cls");
+                        treemenu();
+                        break;
                     case -1:
                         exit(0);
                     default:
@@ -215,6 +255,7 @@ void QQUEUEMenu();
     // +-----------------------------+
     // |List all functions definition|
     // +-----------------------------+
+    void updatebyposition(int , int);
     void listmenu() {
         int choice;
         char y_n;
@@ -381,6 +422,7 @@ void QQUEUEMenu();
 
                     } while ( pos <0 || pos > element_counter);
                     //	updatebyposition();
+                    updatebyposition(pos , val);
                 }
                 break;
 
@@ -413,7 +455,7 @@ void QQUEUEMenu();
             case -2:
                 exit(0);
             default:
-                cout << "\n choice should be between 1 - 14 \n";
+                cout << "\n Wrong Entry! \n";
                 system("pause");
                 system("cls");
             }
@@ -421,7 +463,12 @@ void QQUEUEMenu();
         }
 
     }
-
+    void updatebyposition(int p , int v){
+        list[p-1] = v;
+        cout << "Updated successfully ";
+        system("pause");
+        system("cls");
+    }
 
     void createlist() {
         system("cls");
@@ -590,6 +637,7 @@ void QQUEUEMenu();
                 cout << "Enter 3 to push element "<< endl;
                 cout << "Enter 4 to pop element "<< endl;
                 cout << "Enter 5 to delete Stack "<< endl;
+
                 cout << "Enter -1 to go back "<< endl;
                 cout << "Enter -2 to exit program "<< endl;
                 cout << "Enter Your choice : ";
@@ -636,14 +684,11 @@ void QQUEUEMenu();
                         system("pause");
                         system("cls");
                     }else{
-                        if(top < stacksize){
+
                         cout << "Enter element ";
                         cin >> element;
                         push(element);
-                        }
-                        else{
-                         cout << "Stack Over flow "<< endl;
-                        }
+
                     }
                     break;
                 case 4:
@@ -692,6 +737,13 @@ void QQUEUEMenu();
             cout <<"Enter the size of stack : ";
             cin >> stacksize;
             top =0;
+            int number;
+            for(int i=0; i < stacksize ; i++){
+               cout << "Enter value : ";
+               cin >> number ;
+                mystack[top]=  number;
+                top++;
+            }
             cout << "Stack of size "<<stacksize<<" has been successfully created "<< endl;
                 system("pause");
                 system("cls");
@@ -713,6 +765,7 @@ void QQUEUEMenu();
     }
 
     void push (int number ){
+        stacksize++;
             mystack[top]=  number;
             top++;
             cout << number <<" successfuly pushed to stack "<< endl;
@@ -763,14 +816,11 @@ void linkedlistmenu() {
 		cout << "Enter 7 to smallest number " << endl;
 		cout << "Enter -1 to go back " << endl;
         cout << "Enter -2 to exit program " << endl;
-
-
 		do{
             cout << "Enter your choice : ";
             cin >> choice;
-            int_check =  cin.fail();
+            int_check = cin.fail();
                     if(int_check == true){
-
                         cout << "Entry should be an Integer "<< endl;
                     }
             cin.clear();
@@ -1504,8 +1554,9 @@ while(1){
                 do{
                 cin >> y_n;
                         if(y_n == 'y'|| y_n == 'Y'||y_n == 'n'|| y_n == 'N'){
-                               if(y_n == 'y'|| y_n == 'Y')
-                                    createqueue();
+                               if(y_n == 'y'|| y_n == 'Y'){
+                                    rear=0;
+                                    createqueue();}
                                 break;
                         }else{
                             cout << "Enter again : ";
@@ -1525,7 +1576,7 @@ while(1){
                 cout << "Queue is full ";
                 system("pause");
                 system("cls");
-            }else if(rear <= 0){
+            }else if(rear < 0){
                 cout << "Queue dows not exist "<< endl;
                 system("pause");
                 system("cls");
@@ -1641,16 +1692,11 @@ void displayqueue(){
 void SSmenu(){
 	int choice;
 	while(1){
-		system("cls");
+
 		cout<<"Enter 1 to Create Stack\n";
 		cout<<"Enter 2 to Display Stack\n";
 		cout<<"Enter 3 toPush Stack\n";
 		cout<<"Enter 4 to Pop Stack\n";
-		cout<<"Enter 5 to check if Full\n";
-		cout<<"Enter 6 to check if Empty\n";
-		cout<<"Enter 7 to Delete Stck\n";
-		cout<<"Enter 8 to Clear Stack\n";
-		cout<<"Enter 9 to check Lenght\n";
 		cout<<"Enter -1 to go back\n";
 		cout<<"Enter -2 to go exit\n";
 
@@ -1671,78 +1717,32 @@ void SSmenu(){
 				SScreateStack();
 			break;
 			case 2:
-				displayStack();
+				sdisplayStack();
 			break;
             case 3:
-			    if(top==-1){
+			    if(head==NULL){
 			    	cout<<"Stack doesnot exist";
 				}else{
-					if(ts<=top){
-						cout<<"Stack Is Full.";
-					}else{
-						float n;
+						int n;
 						cout<<"Enter Float Value : ";
 						cin>>n;
-						push(n);
-					}
+
+
+						sspush(n);
+
 				}
 			break;
 			case 4:
-				if(top==-1){
-				    cout<<"First You Have To Create Stack.";
+				if(head == NULL){
+				    cout<<"No stack to display";
 				}else{
-					if(isEmpty()){
-						cout<<"Stack Empty.";
-					}else{
 						float a;
 						a = newpop();
-						cout<<"Value is : "<<a;
-					}
-
-				}
-			break;
-			case 5:
-				isFull();
-			break;
-			case 6:
-				bool j;
-				if(top==-1){
-					cout<<cout<<"First You Have To Create Stack.";
-				}else{
-					j = isEmpty();
-					if(j==1){
-						cout<<"Stack Is Empty.";
-					}else{
-						cout<<"Stack Is Not Empty.";
-					}
-				}
-			break;
-			/** \brief case 7:
-				deleteStack();
-			break;
-			case 8:
-				clearStack();
-			break;
-			case 9:
-				int i;
-				if(top==-1){
-					cout<<"First You Have To Create Stack.";
-				}else{
-					if(isEmpty()){
-						cout<<"Stack Empty.";
-					}else{
-					}
-					i = isLenght();
-					cout<<"Lenght Of Stack Is : "<<i;
+						cout<<"Value "<<a<<" is popped ";
 				}
 			break;
 
-             *
-             * \param
-             * \param
-             * \return
-             *
-             */
+
 			case -1:
 			    mainmenu();
                 break;
@@ -1750,7 +1750,7 @@ void SSmenu(){
 				exit(0);
 			break;
 			default :
-				cout<<"Enter A Valid Value between 1-10\n";
+				cout<<"Enter A Valid Value :";
 				system("pause");
 				system("cls");
 			break;
@@ -1785,7 +1785,7 @@ void SScreateStack(){
             system("pause");
             system("cls");
 }
-void displayStack(){
+void sdisplayStack(){
 	/*if(top==-1){
 		cout<<"First You Have To Create Stack. ";
 	}else{
@@ -1828,7 +1828,7 @@ void displayStack(){
 
 
 }
-void queuepush(int p){
+void sspush(int p){
 	current = head;
 	head = new node;
 	head ->data =  p;
@@ -1837,34 +1837,6 @@ void queuepush(int p){
 	system("pause");
 	system("cls");
 }
-void isFull(){
-	if(top==-1){
-		cout<<"First You Have To Create Stack";
-	}else{
-      if(top==0){
-		cout<<"Stack Empty.";
-	}else{
-	if(ts<=top){
-		cout<<"Stack Is Full.";
-	}else{
-		cout<<"Stack Is Not Full.";
-	}
-  }
-}
-}
-bool isEmpty(){
-	if(head ==NULL){
-		return true;
-	}else{
-		return false;
-	}
-}
-
-void clearStack(){
-head = NULL;
-current = NULL;
-}
-
 
 int newpop(){
 	if(head == NULL){
@@ -1910,17 +1882,16 @@ int QQdequeue();
 void createQQueue();
 void deletQQueue();
 int findQQueue(int x);
-
+node * start =NULL;
+node * end = NULL;
 void QQUEUEMenu(){
 	int choice;
 	while(1){
 			system("cls");
 		cout<<"Enter 1 to Create Queue\n";
 		cout<<"Enter 2 to Display Queue\n";
-		cout<<"Enter 3 to Find \n";
-		cout<<"Enter 4 to Delete Queue\n";
-		cout<<"Enter 5 to Enqueue\n";
-		cout<<"Enter 6 to dequeue\n";
+		cout<<"Enter 3 to Enqueue \n";
+		cout<<"Enter 4 to Dequeue \n";
 		cout<<"Enter -1 to go back\n";
 		cout<<"Enter -2 to exit\n";
 
@@ -1943,29 +1914,7 @@ void QQUEUEMenu(){
 				displaylQueue();
 			break;
 			case 3:
-				if(head==NULL){
-					cout<<"\nQueue is Not Created.";
-				}else{
-					int a,b;
-					cout<<"\nEnter Value To Find : ";
-					cin>>a;
-		           b=findQQueue(a);
-
-		           if(b==0){
-		           	cout<<"\nvalue is not present in stack ";
-				   }
-
-				   else{
-				   	cout<<"\nvalue found at index : "<<b;
-
-				   }
-				}
-			break;
-			case 4:
-				deletQQueue();
-			break;
-			case 5:
-				if(head==NULL){
+								if(start==NULL){
 					cout<<"\nStack Not Created.";
 				}else{ int a;
 				cout<<"\nenter value :";cin>>a;
@@ -1974,15 +1923,15 @@ void QQUEUEMenu(){
 			    QQenqueue( a);
 }
 			break;
-
-
-			case 6:
-			if(head==NULL){
+			case 4:
+				if(start==NULL){
 					cout<<"\nStack Not Created.";
 				}else{
-				cout<<"\npop element is : :"<<QQdequeue();
+				cout<<"\nelement "<<QQdequeue()<< " is popped";
 			}
+
 			break;
+
 			case -1:
 				mainmenu();
 			break;
@@ -1999,144 +1948,1044 @@ void QQUEUEMenu(){
 }
 void createQQueue(){
 	char ch;
-	if(head!=NULL){
+	if(start!=NULL){
 		cout<<"QueueAlready Exist.\n";
 		cout<<"Do You Want To Overwrite (Y\\N)";
 		cin>>ch;
 	}
-	if(head==NULL || ch=='y' || ch=='Y'){
+	if(start==NULL || ch=='y' || ch=='Y'){
 		int a;
 		do{
 		cout<<"Enter Size : ";
 		cin>>a;
 	    }while(a<1);
-	    int h;
-	    cout<<"Enter element\n";
+
+
 	    for(int i=0;i<a;i++){
-	    	if(head==NULL){
-	    		head = new node;
-	    		current = head;
+	    	if(start==NULL){
+	    		start = new node;
+	    		end = start;
+
 	    		cout<<"Enter "<<i+1<<" Element : ";
-	    		cin>>current->data;
-	    		head->next = head;
+	    		cin>>start->data;
+                start->next =NULL;
 			}else{
-				current->next = new node;
-				current = current->next;
+				end->next = new node;
+				end = end->next;
 					cout<<"Enter "<<i+1<<" Element : ";
-					cin>>current->data;
-				current->next = head;
+					cin>>end->data;
+				end->next = NULL;
        }
     }
        cout<<"\nQueue Successfully Created.";
   }
 }
 void displaylQueue(){
-	/*if(head == NULL){
-		cout<<"\nQueue is not created";
-	}else{
-		temp = head;
-		do{
-			cout<<temp<<"\t"<<temp->data;
-			cout<<"\t\t"<<temp->next<<endl;
-			temp = temp->next;
-		}while(temp!=head);
-	}*/
 
 	system("cls");
-	current = head;
+	node *n = start;
 
-	if (current->next == NULL) {
-		cout << current->data << "   --->  NULL" << endl;
-	}
-	else {
+
             cout << "+---------------+-----------------------+-----------------------+"<< endl;
             cout << "|current adress\t|\tcurrent Data\t|\tNext Adress\t|"<< endl;
             cout << "+---------------+-----------------------+-----------------------+"<< endl;
 
 		do {
-			cout << "|" << current << "\t|\t" << current->data << "\t\t|\t";
-			if (current->next == NULL) {
+			cout << "|" << n << "\t|\t" << n->data << "\t\t|\t";
+			if (n->next == NULL) {
 				cout << " NULL\t\t|"<< endl;
 			}
 			else {
-				cout << current->next<<"\t|" << endl;
+				cout << n->next<<"\t|" << endl;
 			}
-			current = current->next;
-		} while (current != head);
+			n = n->next;
+		} while (n != NULL);
 	 cout << "+---------------+-----------------------+-----------------------+"<< endl;
 
-	}
+
 	system("pause");
 	system("cls");
 
 }
 
 void QQenqueue( int a){
-	current->next=new node;
-	current=current->next;
-	current->data=a;
-	current->next=head;
+
+
+	end->next=new node;
+	end=end->next;
+	end->data=a;
+	end->next=NULL;
 	cout<<"\nvalue successfully Enqueued ";
 
 }
 
 int QQdequeue(){
 	int b;
-	b=head->data;
-	head=head->next;
+	b=start->data;
+	start=start->next;
 	return b;
 }
-void deletQQueue(){
-	if(head==NULL){
-		cout<<"\nstack is not created";
-	}else{
-		head = NULL;
-		cout<<"\nstack Successfully Deleted.";
-        
+
+
+
+
+
+
+
+
+
+struct dnode {
+    int item;
+    dnode * next;
+    dnode * previous;
+}*dcurrent = NULL , *dhead =NULL;
+
+
+void doublylinkedlistdisplay();
+ void doublylinkedlistcreate();
+
+ void filedelete();
+dnode *doublyfind(int number);
+void adddnode(int);
+
+
+void doublymenu(){
+    int choice;
+        while(1){
+                cout << "Enter 1 to create list "<< endl;
+                cout << "Enter 2 display list "<< endl;
+                cout << "Enter 3 to add node "<< endl;
+
+                cout << "Enter 4 find in list "<< endl;
+                cout << "Enter -1 to go back "<< endl;
+                cout << "Enter -2 to exit program "<< endl;
+                cout << "Enter choice:";
+                    cin >> choice;
+
+            switch(choice){
+            case 1:
+
+                doublylinkedlistcreate();
+                break;
+            case 2:
+                if(dhead == NULL){
+
+                    cout << "list does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                doublylinkedlistdisplay();
+                }
+                break;
+            case 3:
+                int value;
+                if(dhead == NULL){
+                    cout << "List does not exist ";
+                    system("pause");
+                    system("cls");
+                }else{
+                   do{
+
+                    cout << "Enter value : ";
+                    cin >> value;
+                                if(doublyfind(value) != NULL){
+
+                                    cout << "Duplicate data not allowed ! "<< endl;
+                                }
+                   }while(doublyfind(value) != NULL);
+                adddnode(value);
+                }
+                break;
+            case 4:
+                if(dhead == NULL){
+
+                    cout << "list does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                    cout << "Enter number to find: ";
+                    int number;
+                    cin >> number;
+                    dnode * ret;
+                    ret = doublyfind(number);
+                    if(ret !=NULL){
+                    cout << "found at "<< ret << endl;
+                    }else{
+                        cout << "Not Found"<< endl;
+                    }
+                }
+                system("pause");
+                system("cls");
+                break;
+                   case -1:
+            mainmenu();
+            break;
+        case -2:
+            exit(0);
+            break;
+            default:
+                cout << "Wrong choice";
+                system("pause");
+                system("cls");
+            }
+        }
+}
+
+
+void doublylinkedlistcreate(){
+    char c;
+	if (dhead != NULL){
+
+		cout << "Overwrite?";
+		cin >> c;
+	}if(dhead == NULL|| c== 'y'|| c== 'Y'){
+	    if( c== 'y'|| c== 'Y'){
+            dhead = NULL;
+            dcurrent =NULL;
+	    }
+			int cs;
+			do{
+				cout << "Enter size ";
+				cin >> cs;
+
+			}while(cs < 0);
+int value;
+			for(int i=0 ; i<cs ; i++){
+				if (dhead == NULL){
+					dhead = new dnode;
+					dcurrent = dhead;
+					cout << "Enter value: ";
+					cin >>dcurrent -> item ;
+					dcurrent -> previous = NULL;
+					dcurrent -> next = NULL;
+                }
+                else{
+                        do{
+
+                    cout << "Enter value : ";
+                    cin >> value;
+                                if(doublyfind(value) != NULL){
+
+                                    cout << "Duplicate data not allowed ! "<< endl;
+                                }
+                   }while(doublyfind(value) != NULL);
+
+					dcurrent -> next = new dnode;
+					(dcurrent ->next)-> previous = dcurrent;
+					dcurrent = dcurrent -> next;
+
+					dcurrent -> item = value;
+						dcurrent -> next =  NULL;
+						}
+
+			}
+			cout << "Created successfully "<< endl;
 	}
+
+	system("pause");
+	system("cls");
+ }
+
+
+
+
+ void doublylinkedlistdisplay(){
+
+    /* cout << "current\t\tprev\t\titem\t\tnext"<< endl;
+	if(dhead == NULL){
+            cout << "Empty"<< endl;
+			// not available
+	}else{
+           dcurrent = dhead;
+		do{
+
+		cout << dcurrent <<"\t\t"<<dcurrent->previous << "\t\t"<<
+		dcurrent-> item << "\t\t"<< dcurrent -> next<< endl;
+		dcurrent = dcurrent -> next;
+		}while(dcurrent != NULL);
+
+	}
+ */
+ system("cls");
+	dnode *n = dhead;
+
+
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+            cout << "|prev adress\t|current adress\t|\tcurrent Data\t|\tNext Adress\t|"<< endl;
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+		do {
+                if(n->previous == NULL){
+                    cout <<"|\t";
+                } else{
+                    cout << "|";
+                }
+			cout <<  n->previous << "\t|"<<n<< "\t|\t\t" << n->item << "\t|\t";
+			if (n->next == NULL) {
+				cout << " NULL\t\t|"<< endl;
+			}
+
+			else {
+				cout << n->next<<"\t|" << endl;
+			}
+			n = n->next;
+		} while (n != NULL);
+	 cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+
+	system("pause");
+	system("cls");
+
+ }
+
+
+void filedelete(){
+    if(dhead != NULL){
+            cout << "List Deleted successfully "<< endl;
+        dhead = NULL;
+            system("pause");
+    system("cls");
+    }else{
+        cout << "List does Not exist "<< endl;
+        system("pause");
+    system("cls");
+    }
 }
-int findQQueue(int x)
+
+
+dnode * doublyfind(int number){
+ dnode * t=NULL;
+ dnode * t2=NULL;
+
+    if(dhead == NULL){
+            cout << "Empty"<< endl;
+			// not available
+	}else{
+        t2 = dhead;
+        do{
+                if(t2-> item == number){
+
+                    t = t2;
+                }
+            t2=  t2->next;
+        }while(t2 != NULL);
+	}
+
+return t;
+}
+
+
+void adddnode(int n){
+                    dcurrent -> next = new dnode;
+					(dcurrent ->next)-> previous = dcurrent;
+					dcurrent = dcurrent -> next;
+                    dcurrent -> item = n;
+                    dcurrent -> next =  NULL;
+						cout << "Value added successfully "<< endl;
+system("pause");
+system("cls");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ void doublystackdisplay();
+ void doublystackcreate();
+
+ void doublystackpush();
+int  doublystackpop();
+ void filedelete();
+
+
+void doublystackmenu(){
+    int choice;
+        while(1){
+                cout << "Enter 1 to create stack "<< endl;
+                cout << "Enter 2 display stack "<< endl;
+                cout << "Enter 3 to push element "<< endl;
+                cout << "Enter 4 to pop element "<< endl;
+                cout << "Enter -1 to go back "<< endl;
+                cout << "Enter -2 to exit program "<< endl;
+                cout << "Enter choice:";
+                    cin >> choice;
+
+            switch(choice){
+            case 1:
+                doublystackcreate();
+                break;
+            case 2:
+                if(dhead == NULL){
+
+                    cout << "stack does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                doublystackdisplay();
+                }
+                break;
+            case 3:
+                if(dhead == NULL){
+
+                    cout << "stack does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                   /**  cout << "Enter number to find: ";
+                    int number;
+                    cin >> number;
+                    node * ret;
+                    ret = find(number);
+                    if(ret !=NULL){
+                    cout << "found at "<< ret << endl;
+                    }else{
+                        cout << "Not Found"<< endl;
+                    \brief
+                     *
+                     * \param
+                     * \param
+                     * \return
+                     *
+                     */
+
+                     doublystackpush();
+                    }
+
+                break;
+
+
+
+                 case 4:
+                if(dhead == NULL){
+
+                    cout << "stack already empty"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                 int popped;
+                  popped = doublystackpop();
+
+                  cout << "item "<< popped << " is popped !"<< endl;
+                  system("pause");
+                  system("cls");
+
+                }break;
+                   case -1:
+            mainmenu();
+            break;
+        case -2:
+            exit(0);
+            break;
+            default:
+                cout << "Wrong choice";
+                system("pause");
+                system("cls");
+            }
+        }
+}
+
+
+
+void doublystackcreate(){
+    char c;
+	if (dhead != NULL){
+
+		cout << "Overwrite(y/n)?";
+		cin >> c;
+	}if(c == 'y'||dhead == NULL||  c== 'Y'){
+            if(c=='y'|| c=='Y'){
+                dhead=NULL;
+                dcurrent = NULL;
+                }
+			int cs;
+			do{
+				cout << "Enter size ";
+				cin >> cs;
+
+			}while(cs < 0);
+
+			for(int i=0 ; i<cs ; i++){
+				if (dhead == NULL){
+					dhead = new dnode;
+					dcurrent = dhead;
+					cout << "Enter value : ";
+					cin >> dcurrent -> item;
+					dcurrent -> previous = NULL;
+					dcurrent -> next = NULL;
+
+				}else{
+					dcurrent -> next= new dnode;
+					(dcurrent ->next)-> previous = dcurrent;
+					dcurrent = dcurrent -> next;
+					cout << "Enter value : ";
+					cin >> dcurrent -> item;
+						dcurrent -> next =  NULL;
+						}
+
+			}cout << "Created successfully "<< endl;
+	system("pause");
+	system("cls");
+	}
+
+ }
+
+
+
+
+ void doublystackdisplay(){
+/*
+     cout << "dcurrent\t\tprev\t\titem\t\tnext"<< endl;
+	if(dhead == NULL){
+            cout << "Empty"<< endl;
+			// not available
+	}else{
+        node*   ndcurrent = dhead;
+		do{
+
+		cout << ndcurrent <<"\t\t"<<ndcurrent->previous << "\t\t"<<
+		ndcurrent-> item << "\t\t"<< ndcurrent -> next<< endl;
+		ndcurrent = ndcurrent -> next;
+		}while(ndcurrent != NULL);
+
+	}
+
+	system("pause");
+	system("cls");
+	*/
+
+
+	 system("cls");
+	dnode *n = dhead;
+
+
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+            cout << "|prev adress\t|current adress\t|\tcurrent Data\t|\tNext Adress\t|"<< endl;
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+		do {
+                if(n->previous == NULL){
+                    cout <<"|\t";
+                } else{
+                    cout << "|";
+                }
+			cout <<  n->previous << "\t|"<<n<< "\t|\t\t" << n->item << "\t|\t";
+			if (n->next == NULL) {
+				cout << " NULL\t\t|"<< endl;
+			}
+
+			else {
+				cout << n->next<<"\t|" << endl;
+			}
+			n = n->next;
+		} while (n != NULL);
+	 cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+
+	system("pause");
+	system("cls");
+
+ }
+
+
+
+
+
+
+
+
+void doublystackpush(){
+
+    dcurrent -> next = new dnode;
+
+    (dcurrent -> next)-> previous=  dcurrent;
+    dcurrent = dcurrent -> next;
+
+    cout << "Enter value: ";
+    cin >> dcurrent ->item;
+
+    dcurrent -> next = NULL;
+
+    cout << "Value has been pushed "<< endl;
+    system("pause");
+    system("cls");
+
+}
+
+
+int doublystackpop(){  int popped;
+if(dcurrent ->next == NULL && dcurrent -> previous == NULL)
 {
-node *tt=head;
-int z=0;
-do
+   popped= dcurrent ->item ;
+    dhead = NULL;
+    dcurrent = NULL;
+    return popped;
+}else{
+
+          popped = dhead ->item;
+    dhead = dhead -> next;
+    dhead -> previous = NULL;
+        return popped;
+}
+}
+
+
+//doubly queue
+
+
+
+void doublyqueuedisplay();
+ void doublyqueuecreate();
+ void doublyqueuemenu();
+ void doublyqueueenqueue(int);
+int  doublyqueuedequeue();
+
+dnode *queuetop = NULL ,*bottom =NULL;
+
+void doublyqueuemenu(){
+    int choice;
+        while(1){
+                cout << "Enter 1 to create queue "<< endl;
+                cout << "Enter 2 display queue "<< endl;
+                cout << "Enter 3 to enqueue element "<< endl;
+                cout << "Enter 4 to dequeue element "<< endl;
+                cout << "Enter -1 to go back "<< endl;
+                cout << "Enter -2 to exit "<< endl;
+                cout << "Enter choice:";
+                    cin >> choice;
+
+            switch(choice){
+            case 1:
+                doublyqueuecreate();
+                break;
+            case 2:
+                if(queuetop == NULL){
+
+                    cout << "queue does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                doublyqueuedisplay();
+                }
+                break;
+            case 3:
+                if(queuetop == NULL){
+
+                    cout << "queue does not exist"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+
+                    int number;
+                    cin >> number;
+
+
+                     doublyqueueenqueue(number);
+                    }
+
+                break;
+
+
+
+                 case 4:
+                if(queuetop == NULL){
+
+                    cout << "queue already empty"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                 int popped;
+                  popped = doublyqueuedequeue();
+
+                  cout << "item "<< popped << " is dequeued !"<< endl;
+                  system("pause");
+                  system("cls");
+
+                }break;
+                 case -1:
+                     system("cls");
+                     mainmenu();
+                    break;
+                 case -2:
+                     exit(0);
+                    break;
+            default:
+                cout << "Wrong choice";
+                system("pause");
+                system("cls");
+            }
+        }
+}
+
+
+
+void doublyqueuecreate(){
+    char c;int n;
+	if (queuetop != NULL){
+
+		cout << "Overwrite(y/n)?";
+		cin >> c;
+	}if(c == 'y'||queuetop == NULL||  c== 'Y'){
+            if(c=='y'|| c=='Y'){
+                queuetop = bottom = NULL;
+
+                }
+			int cs;
+			do{
+				cout << "Enter size ";
+				cin >> cs;
+
+			}while(cs < 0);
+
+			for(int i=0 ; i<cs ; i++){
+				if (queuetop == NULL){
+					bottom = new dnode;
+					queuetop = bottom;
+					cout << "Enter value : ";
+					cin >> bottom -> item;
+					bottom -> previous = NULL;
+					bottom-> next = NULL;
+
+				}else{
+					queuetop -> next= new dnode;
+					(queuetop->next)-> previous = queuetop;
+					queuetop = queuetop -> next;
+					cout << "Enter value : ";
+					cin >> queuetop-> item;
+						queuetop -> next =  NULL;
+						}
+
+			}cout << "Created successfully "<< endl;
+	system("pause");
+	system("cls");
+	}
+
+ }
+
+
+
+
+ void doublyqueuedisplay(){
+
+    /* cout << "bottom\t\tprev\t\titem\t\tnext"<< endl;
+	if(queuetop == NULL){
+            cout << "Empty"<< endl;
+			// not available
+	}else{
+        dnode*   nbottom = bottom;
+		do{
+
+		cout << nbottom <<"\t\t"<<nbottom->previous << "\t\t"<<
+		nbottom-> item << "\t\t"<< nbottom -> next<< endl;
+		nbottom = nbottom -> next;
+		}while(nbottom != NULL);
+
+	}
+
+	system("pause");
+	system("cls");
+ }*/
+	 system("cls");
+	dnode *n = bottom;
+
+
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+            cout << "|prev adress\t|current adress\t|\tcurrent Data\t|\tNext Adress\t|"<< endl;
+            cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+		do {
+                if(n->previous == NULL){
+                    cout <<"|\t";
+                } else{
+                    cout << "|";
+                }
+			cout <<  n->previous << "\t|"<<n<< "\t|\t\t" << n->item << "\t|\t";
+			if (n->next == NULL) {
+				cout << " NULL\t\t|"<< endl;
+			}
+
+			else {
+				cout << n->next<<"\t|" << endl;
+			}
+			n = n->next;
+		} while (n != NULL);
+	 cout << "+---------------+---------------+-----------------------+-----------------------+"<< endl;
+
+
+	system("pause");
+	system("cls");
+
+ }
+
+
+
+
+
+
+void doublyqueueenqueue(int n){
+
+    queuetop -> next = new dnode;
+
+    (queuetop -> next)-> previous=  queuetop;
+    queuetop = queuetop -> next;
+    queuetop ->item =  n;
+    queuetop -> next = NULL;
+    cout << "Value has been enqueued "<< endl;
+    system("pause");
+    system("cls");
+
+}
+
+
+int doublyqueuedequeue(){
+	int popped;
+   popped= bottom ->item ;
+	bottom = bottom -> next;
+	bottom -> previous = NULL;
+
+        return popped;
+
+}
+
+
+
+
+
+
+//tree
+
+
+
+struct treenode
 {
-	z++;
-if(x==tt->data)
-{
-return z;
-}
-tt=tt->next;
-}
-while(tt!=head);
-return 0;
+    int item;
+    treenode* left;
+    treenode* right;
+};
+
+int addtreetreenode(int);
+int findintree(int);
+void createtree();
+void displaytree(treenode* );
+
+treenode* troot = NULL;
+treenode * tcurrent = troot;
+
+
+void treemenu(){
+    int choice;
+    while (1)
+    {
+        cout << "Enter 1 to create "<<endl;
+        cout << "Enetr 2 to display "<< endl;
+        cout << "Enter 3 to add treenode "<< endl;
+        cout << "Enter 4 to find in tree "<< endl;
+        cout << "Enter -1 to go back "<< endl;
+        cout << "Enter -2 to exit "<< endl;
+        cout << "Enter your choice:";
+        cin >> choice;
+        char c;
+        switch (choice)
+        {
+            case 1:
+                if(troot != NULL){
+                    cout << "You want to overwrite (y/n)? ";
+
+                    cin >> c;
+                }
+                if(troot == NULL || c== 'y' || c=='Y'){
+                   troot = NULL;
+                   tcurrent = NULL;
+                   createtree();
+                }
+            break;
+            case 2:
+                displaytree(troot);
+                system("pause");
+                system("cls");
+            break;
+            case 3:
+                int value,a;
+
+                if(troot == NULL){
+                    cout << "List does not exist"<< endl;
+                }else{
+                    cout << "Eneter value ";
+                    cin >> value;
+                    a=findintree(value);
+                    if(a==0){
+                        cout << "Duplicate value "<< endl;
+                    }else{
+                        addtreetreenode(value);
+                    }
+                    cout << "Successfully added "<< endl;
+                    system("pause");
+                    system("cls");
+                }
+            break;
+            case 4:
+                cout << "Enter number to find in tree "<< endl;
+                int r,v ;
+                cin >> v;
+                r= findintree(v);
+                if(r==0 ){
+                    cout << "Found"<< endl;
+                    system("pause");
+                    system("cls");
+                }else{
+                    cout << "NOT Found"<< endl;
+                    system("pause");
+                    system("cls");
+                }
+                break;
+            case -1:
+                system("cls");
+                main();
+                break;
+            case -2:
+                exit(0);
+        default:
+            break;
+        }
+    }
 
 }
 
+int addtreetreenode(int v){
+
+     tcurrent = troot;
+    int t=1;
+    while(t){
+        if(tcurrent->item == v){
+
+            return 0;
+        } else{
+            if(v< tcurrent-> item){
+                if(tcurrent -> left == NULL){
+                    tcurrent -> left = new treenode;
+
+                    tcurrent = tcurrent ->left;
+                    tcurrent -> item = v;
+                    tcurrent -> left = NULL;
+                    tcurrent -> right = NULL;
+                    return 1;
+                }else{
+                    tcurrent = tcurrent -> left;
+                }
+            }else{
+                if(tcurrent -> right == NULL){
+                    tcurrent -> right = new treenode;
+                    tcurrent = tcurrent -> right;
+                    tcurrent -> item = v;
+                    tcurrent -> left = NULL;
+                    tcurrent -> right = NULL;
+                    return 1;
+
+                }else{
+                    tcurrent = tcurrent -> right;
+                }
+            }
+
+        }
+    }
+}
+
+
+int findintree(int v){
+
+     tcurrent = troot;
+    int t=1;
+    while(t){
+        if(tcurrent->item == v){
+
+            return 0;
+        } else{
+            if(v< tcurrent-> item){
+                if(tcurrent -> left == NULL){
+
+                    return 1;
+                }else{
+                    tcurrent = tcurrent -> left;
+                }
+            }else{
+                if(tcurrent -> right == NULL){
+
+                    return 1;
+
+                }else{
+                    tcurrent = tcurrent -> right;
+                }
+            }
+
+        }
+    }
+}
 
 
 
 
+void createtree(){
+    int counter;
+    int value;
+            int a;
+    do
+    {
+        cout << "How many treenodes you want to enter : ";
+        cin >> counter;
+    } while(counter< 1);
+
+    for (int i = 0; i < counter; i++)
+    {
+        if(troot == NULL){
+            troot = new treenode;
+            tcurrent = troot;
+            cout << "Enter data : ";
+            cin >> tcurrent->item ;
+            tcurrent -> left = NULL;
+            tcurrent -> right = NULL;
+        }else{
+
+            cout << "Enter data : ";
+            cin >> value;
+            a = addtreetreenode(value);
+            if(a==0 ){
+                cout << "Value is dublicate "<<endl;
+                i--;
+            }
+
+        }
+    }
+    cout << "Successfully added "<< endl;
+    system("pause");
+    system("cls");
+}
 
 
 
+void displaytree(treenode * start){
+    if(start == NULL){
+        return;
+    }
+
+    cout << start->item<< ", ";
+    displaytree(start -> left);
+   displaytree(start -> right);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

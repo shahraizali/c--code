@@ -3,8 +3,6 @@
 
 using namespace std;
 
-
-
 struct node
 {
     int item;
@@ -84,8 +82,8 @@ void menu(){
 int add_node(int v){
 
      current = root;
-    int t=1;
-    while(t){
+    
+    while(1){
         if(current->item == v){
 
             return 0;
@@ -197,9 +195,8 @@ void display(node * start){
         return;
     }
 
-    cout << start->item<<endl;
+    cout << start->item<< ", ";
     display(start -> left);
-
    display(start -> right);
 
 
