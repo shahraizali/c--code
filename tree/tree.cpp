@@ -2,7 +2,7 @@
 #include <windows.h>
 
 using namespace std;
-
+//creating structure
 struct node
 {
     int item;
@@ -78,17 +78,17 @@ void menu(){
     }
 
 }
-
+                // Adding Node to tree
 int add_node(int v){
 
      current = root;
     
     while(1){
-        if(current->item == v){
+        if(current->item == v){   
 
             return 0;
         } else{
-            if(v< current-> item){
+            if(v< current-> item){                                      // left side i.e smaller than its parent
                 if(current -> left == NULL){
                     current -> left = new node;
 
@@ -100,7 +100,7 @@ int add_node(int v){
                 }else{
                     current = current -> left;
                 }
-            }else{
+            }else{                                                      // right side i.e greater than its parent
                 if(current -> right == NULL){
                     current -> right = new node;
                     current = current -> right;
@@ -119,8 +119,8 @@ int add_node(int v){
 }
 
 
-int find(int v){
-
+int find(int v){                                                //finding element
+    
      current = root;
     int t=1;
     while(t){
@@ -152,7 +152,7 @@ int find(int v){
 
 
 
-void create(){
+void create(){                                                      //creating tree
     int counter;
     int value;
             int a;
@@ -190,7 +190,7 @@ void create(){
 
 
 
-void display(node * start){
+void display(node * start){                                 // display  NLR
     if(start == NULL){
         return;
     }
