@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1469117751 source:c:\users\shahraiz\onedrive\c++\avl\main.cpp
+	<iostream>
+	<windows.h>
+
